@@ -1,3 +1,5 @@
+import uuid
+
 from app.adapter.in_memory_mood_repository import InMemoryMoodRepository
 from app.domain.mood import Mood
 
@@ -22,4 +24,15 @@ def test_mood_repository_total():
     Mood().save(mood_repository)
     Mood().save(mood_repository)
 
-    assert len(mood_repository.all()) == 2
+    assert mood_repository.total() == 2
+
+
+def test_mood_repository_get():
+    mood_repository = InMemoryMoodRepository()
+
+    mood_id = str(uuid.uuid4())
+    expected_mood = Mood(mood_id=mood_id)
+    expected_mood.save(mood_repository)
+    actual_mood = mood_repository.get(mood_id)
+
+    assert expected_mood == actual_mood

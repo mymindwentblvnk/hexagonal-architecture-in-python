@@ -17,3 +17,7 @@ class MoodRepository(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get(self, mood_id: str) -> Mood:
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def total(self) -> int:
+        raise NotImplementedError

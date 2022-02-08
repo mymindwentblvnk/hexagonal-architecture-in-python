@@ -18,3 +18,6 @@ class InMemoryMoodRepository(MoodRepository):
     def get(self, mood_id: str) -> 'Mood':
         [mood] = filter(lambda m: m.mood_id == mood_id, self.moods)
         return mood
+
+    def total(self) -> int:
+        return len(self.moods)
